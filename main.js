@@ -71,6 +71,7 @@ async function main() {
     await mainFrame.waitForSelector("#reboot");
     if (!skip) {
       await (await mainFrame.$("#reboot")).click();
+      await delay(1000);
     }
 
     console.log("Successfully rebooted your tp-link router");
@@ -78,6 +79,12 @@ async function main() {
     console.error("Error: login failed!", error);
   }
   await browser.close();
+}
+
+function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
 }
 
 module.exports = main;
